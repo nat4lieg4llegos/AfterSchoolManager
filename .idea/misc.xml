@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/auth-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/tutores-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/reportes-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/talleres-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/apoderados-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/asistencia-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/estudiante-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/inventario-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/actividades-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/inscripciones-service/pom.xml" />
+        <option value="$PROJECT_DIR$/MiProyectoMicroservicios/notificaciones-service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" default="true" project-jdk-name="24" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

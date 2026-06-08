@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/actividades-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/apoderados-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/asistencia-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/auth-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/estudiante-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/gateway-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/inscripciones-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/inventario-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/notificaciones-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/reportes-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/talleres-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MiProyectoMicroservicios/tutores-service/src/main/java" charset="UTF-8" />
+  </component>
+</project>

@@ -1,7 +1,7 @@
-package com.edumanage.inventario.service;
+package com.edumanage.notificaciones.NotificacionesTest.service;
 
-import com.edumanage.inventario.model.Articulo;
-import com.edumanage.inventario.repository.ArticuloRepository;
+import com.edumanage.notificaciones.NotificacionesTest.model.Articulo;
+import com.edumanage.notificaciones.NotificacionesTest.repository.ArticuloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

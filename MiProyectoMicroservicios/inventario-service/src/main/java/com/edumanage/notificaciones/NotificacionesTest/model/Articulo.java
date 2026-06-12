@@ -1,4 +1,4 @@
-package com.edumanage.inventario.model;
+package com.edumanage.notificaciones.NotificacionesTest.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

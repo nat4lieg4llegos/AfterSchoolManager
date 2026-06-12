@@ -26,7 +26,7 @@
         </processorPath>
         <module name="calificaciones-service" />
       </profile>
-      <profile name="Annotation profile for instructores-service" enabled="true">
+      <profile name="Annotation profile for inscripciones" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

@@ -1,6 +1,6 @@
-package com.edumanage.inventario.repository;
+package com.edumanage.notificaciones.NotificacionesTest.repository;
 
-import com.edumanage.inventario.model.Articulo;
+import com.edumanage.notificaciones.NotificacionesTest.model.Articulo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.edumanage.inventario;
+package com.edumanage.notificaciones.NotificacionesTest;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

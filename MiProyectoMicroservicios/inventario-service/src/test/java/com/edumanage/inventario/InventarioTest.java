@@ -1,10 +1,10 @@
-package com.edumanage.notificaciones.NotificacionesTest;
+package com.edumanage.inventario;
 
 import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.edumanage.notificaciones.NotificacionesTest.model.Articulo;
+import com.edumanage.inventario.model.Articulo;
 
 class InventarioTest {
 

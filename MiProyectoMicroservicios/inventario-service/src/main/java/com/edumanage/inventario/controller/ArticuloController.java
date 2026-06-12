@@ -1,7 +1,7 @@
-package com.edumanage.notificaciones.NotificacionesTest.controller;
+package com.edumanage.inventario.controller;
 
-import com.edumanage.notificaciones.NotificacionesTest.model.Articulo;
-import com.edumanage.notificaciones.NotificacionesTest.service.ArticuloService;
+import com.edumanage.inventario.model.Articulo;
+import com.edumanage.inventario.service.ArticuloService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

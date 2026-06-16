@@ -16,7 +16,7 @@ class ActividadesTest {
     void testCrearActividad() {
         // Arrange
         Actividad actividad = new Actividad();
-        actividad.setTallerId(faker.number().randomNumber());
+        actividad.setTallerId(faker.number().numberBetween(1L, 100L));
         actividad.setTitulo(faker.educator().course());
         actividad.setDescripcion(faker.lorem().sentence());
         actividad.setFechaProgramada(LocalDate.now().plusDays(faker.number().numberBetween(1, 30)));

@@ -6,10 +6,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/apoderados")
@@ -21,14 +26,23 @@ public class ApoderadoController {
 
     @GetMapping
     @Operation(summary = "Obtener todos los apoderados")
-    public List<Apoderado> obtenerTodos() {
-        return apoderadoService.obtenerTodos();
+    public CollectionModel<EntityModel<Apoderado>> obtenerTodos() {
+        List<EntityModel<Apoderado>> apoderados = apoderadoService.obtenerTodos().stream()
+                .map(a -> EntityModel.of(a,
+                        linkTo(methodOn(ApoderadoController.class).obtenerPorId(a.getId())).withSelfRel(),
+                        linkTo(methodOn(ApoderadoController.class).obtenerTodos()).withRel("apoderados")))
+                .collect(Collectors.toList());
+        return CollectionModel.of(apoderados,
+                linkTo(methodOn(ApoderadoController.class).obtenerTodos()).withSelfRel());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener apoderado por ID")
-    public ResponseEntity<Apoderado> obtenerPorId(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<Apoderado>> obtenerPorId(@PathVariable Long id) {
         return apoderadoService.obtenerPorId(id)
+                .map(a -> EntityModel.of(a,
+                        linkTo(methodOn(ApoderadoController.class).obtenerPorId(id)).withSelfRel(),
+                        linkTo(methodOn(ApoderadoController.class).obtenerTodos()).withRel("apoderados")))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

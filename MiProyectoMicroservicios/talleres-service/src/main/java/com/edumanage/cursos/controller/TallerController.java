@@ -5,10 +5,15 @@ import com.edumanage.cursos.service.TallerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/talleres")
@@ -23,14 +28,23 @@ public class TallerController {
 
     @GetMapping
     @Operation(summary = "Listar todos los talleres")
-    public ResponseEntity<List<Taller>> listar() {
-        return ResponseEntity.ok(tallerService.listarTodos());
+    public CollectionModel<EntityModel<Taller>> listar() {
+        List<EntityModel<Taller>> talleres = tallerService.listarTodos().stream()
+                .map(t -> EntityModel.of(t,
+                        linkTo(methodOn(TallerController.class).obtener(t.getId())).withSelfRel(),
+                        linkTo(methodOn(TallerController.class).listar()).withRel("talleres")))
+                .collect(Collectors.toList());
+        return CollectionModel.of(talleres,
+                linkTo(methodOn(TallerController.class).listar()).withSelfRel());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener un taller por ID")
-    public ResponseEntity<Taller> obtener(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<Taller>> obtener(@PathVariable Long id) {
         return tallerService.buscarPorId(id)
+                .map(t -> EntityModel.of(t,
+                        linkTo(methodOn(TallerController.class).obtener(id)).withSelfRel(),
+                        linkTo(methodOn(TallerController.class).listar()).withRel("talleres")))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

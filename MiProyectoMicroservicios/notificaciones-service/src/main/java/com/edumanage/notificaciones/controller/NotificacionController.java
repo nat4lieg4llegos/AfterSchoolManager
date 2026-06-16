@@ -6,10 +6,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/notificaciones")
@@ -21,14 +26,23 @@ public class NotificacionController {
 
     @GetMapping
     @Operation(summary = "Obtener todas las notificaciones")
-    public List<Notificacion> obtenerTodas() {
-        return notificacionService.obtenerTodas();
+    public CollectionModel<EntityModel<Notificacion>> obtenerTodas() {
+        List<EntityModel<Notificacion>> notificaciones = notificacionService.obtenerTodas().stream()
+                .map(n -> EntityModel.of(n,
+                        linkTo(methodOn(NotificacionController.class).obtenerPorId(n.getId())).withSelfRel(),
+                        linkTo(methodOn(NotificacionController.class).obtenerTodas()).withRel("notificaciones")))
+                .collect(Collectors.toList());
+        return CollectionModel.of(notificaciones,
+                linkTo(methodOn(NotificacionController.class).obtenerTodas()).withSelfRel());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener notificación por ID")
-    public ResponseEntity<Notificacion> obtenerPorId(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<Notificacion>> obtenerPorId(@PathVariable Long id) {
         return notificacionService.obtenerPorId(id)
+                .map(n -> EntityModel.of(n,
+                        linkTo(methodOn(NotificacionController.class).obtenerPorId(id)).withSelfRel(),
+                        linkTo(methodOn(NotificacionController.class).obtenerTodas()).withRel("notificaciones")))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

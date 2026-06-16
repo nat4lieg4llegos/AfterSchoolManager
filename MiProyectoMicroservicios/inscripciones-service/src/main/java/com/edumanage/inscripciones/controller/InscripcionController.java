@@ -5,10 +5,15 @@ import com.edumanage.inscripciones.service.InscripcionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/inscripciones")
@@ -23,14 +28,23 @@ public class InscripcionController {
 
     @GetMapping
     @Operation(summary = "Listar todas las inscripciones")
-    public ResponseEntity<List<Inscripcion>> listar() {
-        return ResponseEntity.ok(inscripcionService.listarTodos());
+    public CollectionModel<EntityModel<Inscripcion>> listar() {
+        List<EntityModel<Inscripcion>> inscripciones = inscripcionService.listarTodos().stream()
+                .map(i -> EntityModel.of(i,
+                        linkTo(methodOn(InscripcionController.class).obtener(i.getId())).withSelfRel(),
+                        linkTo(methodOn(InscripcionController.class).listar()).withRel("inscripciones")))
+                .collect(Collectors.toList());
+        return CollectionModel.of(inscripciones,
+                linkTo(methodOn(InscripcionController.class).listar()).withSelfRel());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener una inscripción por ID")
-    public ResponseEntity<Inscripcion> obtener(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<Inscripcion>> obtener(@PathVariable Long id) {
         return inscripcionService.buscarPorId(id)
+                .map(i -> EntityModel.of(i,
+                        linkTo(methodOn(InscripcionController.class).obtener(id)).withSelfRel(),
+                        linkTo(methodOn(InscripcionController.class).listar()).withRel("inscripciones")))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

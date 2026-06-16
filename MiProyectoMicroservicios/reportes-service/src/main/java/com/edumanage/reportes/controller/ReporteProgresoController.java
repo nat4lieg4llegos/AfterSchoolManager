@@ -6,10 +6,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 @RequestMapping("/api/reportes")
@@ -21,14 +26,23 @@ public class ReporteProgresoController {
 
     @GetMapping
     @Operation(summary = "Obtener todos los reportes")
-    public List<ReporteProgreso> obtenerTodos() {
-        return reporteService.obtenerTodos();
+    public CollectionModel<EntityModel<ReporteProgreso>> obtenerTodos() {
+        List<EntityModel<ReporteProgreso>> reportes = reporteService.obtenerTodos().stream()
+                .map(r -> EntityModel.of(r,
+                        linkTo(methodOn(ReporteProgresoController.class).obtenerPorId(r.getId())).withSelfRel(),
+                        linkTo(methodOn(ReporteProgresoController.class).obtenerTodos()).withRel("reportes")))
+                .collect(Collectors.toList());
+        return CollectionModel.of(reportes,
+                linkTo(methodOn(ReporteProgresoController.class).obtenerTodos()).withSelfRel());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener reporte por ID")
-    public ResponseEntity<ReporteProgreso> obtenerPorId(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<ReporteProgreso>> obtenerPorId(@PathVariable Long id) {
         return reporteService.obtenerPorId(id)
+                .map(r -> EntityModel.of(r,
+                        linkTo(methodOn(ReporteProgresoController.class).obtenerPorId(id)).withSelfRel(),
+                        linkTo(methodOn(ReporteProgresoController.class).obtenerTodos()).withRel("reportes")))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

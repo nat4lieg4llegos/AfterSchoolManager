@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
-@RequestMapping("/api/talleres")
+@RequestMapping("/api/v1/talleres")
 @Tag(name = "Talleres", description = "Operaciones CRUD para gestión de talleres")
 public class TallerController {
 

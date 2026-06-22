@@ -1,5 +1,6 @@
 package com.edumanage.cursos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -19,9 +20,12 @@ public class Horario {
     @NotNull(message = "El taller es obligatorio")
     @ManyToOne
     @JoinColumn(name = "taller_id", nullable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Taller taller;
 
-    @NotBlank(message = "El día no puede estar vacío")
+    @NotBlank(message = "El dia no puede estar vacio")
     @Column(name = "dia_semana", nullable = false)
     private String diaSemana;
 

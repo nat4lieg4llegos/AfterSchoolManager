@@ -2,11 +2,15 @@ package com.edumanage.apoderados.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "apoderado")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Apoderado {
 
     @Id
@@ -26,4 +30,14 @@ public class Apoderado {
 
     @NotBlank
     private String telefono;
+
+    @OneToMany(mappedBy = "apoderado", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<PersonaAutorizada> personasAutorizadas = new ArrayList<>();
+
+    public void agregarPersonaAutorizada(PersonaAutorizada p) {
+        p.setApoderado(this);
+        this.personasAutorizadas.add(p);
+    }
 }

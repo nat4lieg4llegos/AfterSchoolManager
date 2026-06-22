@@ -3,6 +3,9 @@ package com.afterschool.estudiante.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+// ¡IMPORTANTE! Agrega estos dos nuevos imports para que reconozca las listas:
+import java.util.ArrayList;
+import java.util.List;
 
 public class EstudianteRequestDTO {
 
@@ -20,6 +23,9 @@ public class EstudianteRequestDTO {
 
     private Long apoderadoId;
 
+
+    private List<ContactoEmergenciaDTO> contactos = new ArrayList<>();
+
     public String getRut() { return rut; }
     public void setRut(String rut) { this.rut = rut; }
     public String getNombre() { return nombre; }
@@ -30,4 +36,8 @@ public class EstudianteRequestDTO {
     public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
     public Long getApoderadoId() { return apoderadoId; }
     public void setApoderadoId(Long apoderadoId) { this.apoderadoId = apoderadoId; }
+
+    //  GETTER Y SETTER
+    public List<ContactoEmergenciaDTO> getContactos() { return contactos; }
+    public void setContactos(List<ContactoEmergenciaDTO> contactos) { this.contactos = contactos; }
 }

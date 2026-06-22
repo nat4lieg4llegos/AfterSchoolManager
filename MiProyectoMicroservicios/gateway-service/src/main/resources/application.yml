@@ -1,0 +1,70 @@
+﻿server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowed-origins: "*"
+                allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
+                allowed-headers: "*"
+          routes:
+            - id: auth-service
+              uri: http://auth-service:8092
+              predicates:
+                - Path=/api/v1/auth/**
+            - id: estudiante-service
+              uri: http://estudiante-service:8081
+              predicates:
+                - Path=/api/v1/estudiantes/**
+            - id: talleres-service
+              uri: http://talleres-service:8083
+              predicates:
+                - Path=/api/v1/talleres/**
+            - id: tutores-service
+              uri: http://tutores-service:8084
+              predicates:
+                - Path=/api/v1/tutores/**
+            - id: actividades-service
+              uri: http://actividades-service:8085
+              predicates:
+                - Path=/api/v1/actividades/**
+            - id: asistencia-service
+              uri: http://asistencia-service:8086
+              predicates:
+                - Path=/api/v1/asistencia/**
+            - id: inscripciones-service
+              uri: http://inscripciones-service:8087
+              predicates:
+                - Path=/api/v1/inscripciones/**
+            - id: inventario-service
+              uri: http://inventario-service:8088
+              predicates:
+                - Path=/api/v1/inventario/**
+            - id: notificaciones-service
+              uri: http://notificaciones-service:8089
+              predicates:
+                - Path=/api/v1/notificaciones/**
+            - id: reportes-service
+              uri: http://reportes-service:8090
+              predicates:
+                - Path=/api/v1/reportes/**
+            - id: apoderados-service
+              uri: http://apoderados-service:8091
+              predicates:
+                - Path=/api/v1/apoderados/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}

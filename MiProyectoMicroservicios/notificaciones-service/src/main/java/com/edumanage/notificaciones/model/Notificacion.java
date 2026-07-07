@@ -3,12 +3,16 @@ package com.edumanage.notificaciones.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "notificacion")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Notificacion {
 
     @Id
@@ -30,4 +34,14 @@ public class Notificacion {
     private LocalDateTime fechaEnvio;
 
     private Boolean leida = false;
+
+    @OneToMany(mappedBy = "notificacion", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<IntentoEnvio> intentos = new ArrayList<>();
+
+    public void agregarIntento(IntentoEnvio i) {
+        i.setNotificacion(this);
+        this.intentos.add(i);
+    }
 }

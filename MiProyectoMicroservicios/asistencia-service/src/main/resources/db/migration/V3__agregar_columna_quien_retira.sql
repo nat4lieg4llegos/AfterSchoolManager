@@ -1,0 +1,1 @@
+ALTER TABLE registro_asistencia ADD COLUMN IF NOT EXISTS quien_retira VARCHAR(255);

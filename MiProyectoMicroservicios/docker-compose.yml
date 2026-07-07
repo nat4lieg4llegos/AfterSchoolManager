@@ -1,0 +1,201 @@
+﻿services:
+  # 1. Base de Datos
+  mariadb-server:
+    image: mariadb:10.4
+    container_name: afterschool_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - afterschool-net
+    volumes:
+      - ./basedatosproyecto.sql:/docker-entrypoint-initdb.d/init.sql
+      - mariadb_data:/var/lib/mysql
+
+  # 2. Service Registry (Eureka)
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka_server
+    ports:
+      - "8761:8761"
+    networks:
+      - afterschool-net
+
+  # 3. API Gateway
+  gateway-service:
+    build: ./gateway-service
+    container_name: api_gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - afterschool-net
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+
+  # 4. Microservicios
+  auth-service:
+    build: ./auth-service
+    container_name: ms_auth
+    ports:
+      - "8092:8092"
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  estudiante-service:
+    build: ./estudiante-service
+    container_name: ms_estudiante
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  actividades-service:
+    build: ./actividades-service
+    container_name: ms_actividades
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  apoderados-service:
+    build: ./apoderados-service
+    container_name: ms_apoderados
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  asistencia-service:
+    build: ./asistencia-service
+    container_name: ms_asistencia
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  inscripciones-service:
+    build: ./inscripciones-service
+    container_name: ms_inscripciones
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  inventario-service:
+    build: ./inventario-service
+    container_name: ms_inventario
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  notificaciones-service:
+    build: ./notificaciones-service
+    container_name: ms_notificaciones
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  reportes-service:
+    build: ./reportes-service
+    container_name: ms_reportes
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  talleres-service:
+    build: ./talleres-service
+    container_name: ms_talleres
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+  tutores-service:
+    build: ./tutores-service
+    container_name: ms_tutores
+    networks:
+      - afterschool-net
+    environment:
+      - DB_HOST=mariadb-server
+      - DB_USER=root
+      - DB_PASS=root
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    depends_on:
+      - mariadb-server
+      - eureka-server
+
+networks:
+  afterschool-net:
+    driver: bridge
+
+volumes:
+  mariadb_data:

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ApoderadoRepository extends JpaRepository<Apoderado, Long> {
+
+    boolean existsByRut(String rut);
 }

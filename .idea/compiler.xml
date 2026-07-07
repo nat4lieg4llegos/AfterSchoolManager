@@ -14,7 +14,9 @@
         <module name="actividades-service" />
         <module name="evaluacion" />
         <module name="apoderados" />
+        <module name="estudiante-service" />
         <module name="progreso" />
+        <module name="eureka-server" />
         <module name="cuestionarios" />
       </profile>
       <profile name="Annotation profile for calificaciones-service" enabled="true">
@@ -26,7 +28,7 @@
         </processorPath>
         <module name="calificaciones-service" />
       </profile>
-      <profile name="Annotation profile for cursos" enabled="true">
+      <profile name="Annotation profile for inscripciones" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -46,6 +48,8 @@
       <module name="calificaciones-service" options="-parameters" />
       <module name="cuestionarios" options="-parameters" />
       <module name="cursos" options="-parameters" />
+      <module name="estudiante-service" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
       <module name="evaluacion" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="inscripciones" options="-parameters" />

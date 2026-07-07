@@ -3,10 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MiProyectoMicroservicios.iml" filepath="$PROJECT_DIR$/.idea/MiProyectoMicroservicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiProyectoMicroservicios/actividades-service/actividades-service.iml" filepath="$PROJECT_DIR$/MiProyectoMicroservicios/actividades-service/actividades-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiProyectoMicroservicios/apoderados-service/apoderados.iml" filepath="$PROJECT_DIR$/MiProyectoMicroservicios/apoderados-service/apoderados.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiProyectoMicroservicios/asistencia-service/cuestionarios.iml" filepath="$PROJECT_DIR$/MiProyectoMicroservicios/asistencia-service/cuestionarios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiProyectoMicroservicios/talleres-service/cursos.iml" filepath="$PROJECT_DIR$/MiProyectoMicroservicios/talleres-service/cursos.iml" />
     </modules>
   </component>
 </project>

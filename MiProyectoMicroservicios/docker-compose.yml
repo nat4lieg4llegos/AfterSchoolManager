@@ -119,9 +119,11 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - TALLERES_URL=http://talleres-service:8083
     depends_on:
       - mariadb-server
       - eureka-server
+      - talleres-service
 
   inventario-service:
     build: ./inventario-service

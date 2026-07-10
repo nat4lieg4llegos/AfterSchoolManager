@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.edumanage</groupId>
-	<artifactId>cursos</artifactId>
+	<artifactId>talleres-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>

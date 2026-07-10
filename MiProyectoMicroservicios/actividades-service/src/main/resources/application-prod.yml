@@ -1,0 +1,10 @@
+# Perfil de PRODUCCION / DOCKER (se activa con SPRING_PROFILES_ACTIVE=prod)
+# Reduce el ruido de logs y oculta el SQL en consola.
+spring:
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    com.edumanage.actividades: INFO
+    root: WARN

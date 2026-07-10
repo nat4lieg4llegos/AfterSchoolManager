@@ -49,6 +49,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -63,6 +64,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -77,6 +79,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -91,6 +94,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -105,6 +109,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -119,6 +124,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
       - TALLERES_URL=http://talleres-service:8083
     depends_on:
       - mariadb-server
@@ -135,6 +141,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -149,6 +156,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -163,6 +171,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -177,6 +186,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server
@@ -191,6 +201,7 @@
       - DB_USER=root
       - DB_PASS=root
       - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - mariadb-server
       - eureka-server

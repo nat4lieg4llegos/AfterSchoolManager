@@ -1,0 +1,9 @@
+# Perfil de DESARROLLO LOCAL (activo por defecto si no se define SPRING_PROFILES_ACTIVE)
+# Muestra las consultas SQL y logs detallados para depurar en el IDE.
+spring:
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    com.edumanage.apoderados: DEBUG

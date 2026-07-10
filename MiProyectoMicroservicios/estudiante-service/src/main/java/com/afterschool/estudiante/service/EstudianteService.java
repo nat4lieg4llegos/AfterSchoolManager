@@ -4,6 +4,7 @@ import com.afterschool.estudiante.dto.ContactoEmergenciaDTO;
 import com.afterschool.estudiante.dto.EstudianteRequestDTO;
 import com.afterschool.estudiante.dto.EstudianteResponseDTO;
 import com.afterschool.estudiante.exception.ContactoDuplicadoException;
+import com.afterschool.estudiante.exception.EstudianteNoEncontradoException;
 import com.afterschool.estudiante.model.ContactoEmergencia;
 import com.afterschool.estudiante.model.Estudiante;
 import com.afterschool.estudiante.repository.EstudianteRepository;
@@ -32,7 +33,7 @@ public class EstudianteService {
 
     public EstudianteResponseDTO obtenerPorId(Long id) {
         Estudiante e = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con id: " + id));
+                .orElseThrow(() -> new EstudianteNoEncontradoException("Estudiante no encontrado con id: " + id));
         return toDTO(e);
     }
 
@@ -61,7 +62,7 @@ public class EstudianteService {
 
     public EstudianteResponseDTO actualizar(Long id, EstudianteRequestDTO dto) {
         Estudiante e = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con id: " + id));
+                .orElseThrow(() -> new EstudianteNoEncontradoException("Estudiante no encontrado con id: " + id));
         e.setRut(dto.getRut());
         e.setNombre(dto.getNombre());
         e.setApellido(dto.getApellido());
@@ -72,7 +73,7 @@ public class EstudianteService {
 
     public void eliminar(Long id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Estudiante no encontrado con id: " + id);
+            throw new EstudianteNoEncontradoException("Estudiante no encontrado con id: " + id);
         }
         repository.deleteById(id);
     }
@@ -80,7 +81,7 @@ public class EstudianteService {
     // Agrega un contacto de emergencia a un estudiante existente
     public EstudianteResponseDTO agregarContactoAEstudiante(Long id, ContactoEmergenciaDTO contactoDTO) {
         Estudiante e = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con id: " + id));
+                .orElseThrow(() -> new EstudianteNoEncontradoException("Estudiante no encontrado con id: " + id));
 
         boolean existe = e.getContactos().stream()
                 .anyMatch(c -> c.getTelefono().equals(contactoDTO.getTelefono()));

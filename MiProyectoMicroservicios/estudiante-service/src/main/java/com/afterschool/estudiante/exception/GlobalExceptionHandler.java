@@ -12,6 +12,13 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(EstudianteNoEncontradoException.class)
+    public ResponseEntity<Map<String, String>> handleEstudianteNoEncontrado(EstudianteNoEncontradoException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
     @ExceptionHandler(ContactoDuplicadoException.class)
     public ResponseEntity<Map<String, String>> handleContactoDuplicado(ContactoDuplicadoException ex) {
         Map<String, String> error = new HashMap<>();

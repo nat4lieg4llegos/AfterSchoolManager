@@ -57,6 +57,8 @@
   estudiante-service:
     build: ./estudiante-service
     container_name: ms_estudiante
+    ports:
+      - "8081:8081"
     networks:
       - afterschool-net
     environment:
@@ -72,6 +74,8 @@
   actividades-service:
     build: ./actividades-service
     container_name: ms_actividades
+    ports:
+      - "8085:8085"
     networks:
       - afterschool-net
     environment:
@@ -87,6 +91,8 @@
   apoderados-service:
     build: ./apoderados-service
     container_name: ms_apoderados
+    ports:
+      - "8091:8091"
     networks:
       - afterschool-net
     environment:
@@ -102,6 +108,8 @@
   asistencia-service:
     build: ./asistencia-service
     container_name: ms_asistencia
+    ports:
+      - "8086:8086"
     networks:
       - afterschool-net
     environment:
@@ -117,6 +125,8 @@
   inscripciones-service:
     build: ./inscripciones-service
     container_name: ms_inscripciones
+    ports:
+      - "8087:8087"
     networks:
       - afterschool-net
     environment:
@@ -134,6 +144,8 @@
   inventario-service:
     build: ./inventario-service
     container_name: ms_inventario
+    ports:
+      - "8088:8088"
     networks:
       - afterschool-net
     environment:
@@ -149,6 +161,8 @@
   notificaciones-service:
     build: ./notificaciones-service
     container_name: ms_notificaciones
+    ports:
+      - "8089:8089"
     networks:
       - afterschool-net
     environment:
@@ -164,6 +178,8 @@
   reportes-service:
     build: ./reportes-service
     container_name: ms_reportes
+    ports:
+      - "8090:8090"
     networks:
       - afterschool-net
     environment:
@@ -179,6 +195,8 @@
   talleres-service:
     build: ./talleres-service
     container_name: ms_talleres
+    ports:
+      - "8083:8083"
     networks:
       - afterschool-net
     environment:
@@ -194,6 +212,8 @@
   tutores-service:
     build: ./tutores-service
     container_name: ms_tutores
+    ports:
+      - "8084:8084"
     networks:
       - afterschool-net
     environment:
